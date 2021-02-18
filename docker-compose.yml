@@ -15,6 +15,7 @@ services:
     links:
       - host-tsurubee:host-tsurubee
       - host-hoge:host-hoge
+      - host-fuga:host-fuga
 
   host-tsurubee:
     build:
@@ -27,3 +28,9 @@ services:
       context: ./
       dockerfile: ./docker/host-hoge/Dockerfile
     hostname: 'host-hoge'
+
+  host-fuga:
+    build:
+      context: ./
+      dockerfile: ./docker/host-fuga/Dockerfile
+    hostname: 'host-fuga'

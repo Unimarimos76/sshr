@@ -1,11 +1,14 @@
 FROM golang:1.12-stretch
 
-RUN mkdir -p /home/tsurubee/.ssh /home/hoge/.ssh
+RUN mkdir -p /home/tsurubee/.ssh /home/hoge/.ssh /home/fuga/.ssh
+
 
 ADD misc/testdata/sshr_keys/id_rsa /home/tsurubee/.ssh
 ADD misc/testdata/sshr_keys/id_rsa /home/hoge/.ssh
+ADD misc/testdata/sshr_keys/id_rsa /home/fuga/.ssh
 ADD misc/testdata/client_keys/id_rsa.pub /home/tsurubee/.ssh
 ADD misc/testdata/client_keys/id_rsa.pub /home/hoge/.ssh
+ADD misc/testdata/client_keys/id_rsa_openssh.pub /home/fuga/.ssh
 
 RUN touch /home/tsurubee/.ssh/authorized_keys && \
     chmod 600 /home/tsurubee/.ssh/authorized_keys && \
@@ -14,3 +17,7 @@ RUN touch /home/tsurubee/.ssh/authorized_keys && \
 RUN touch /home/hoge/.ssh/authorized_keys && \
     chmod 600 /home/hoge/.ssh/authorized_keys && \
     cat /home/hoge/.ssh/id_rsa.pub > /home/hoge/.ssh/authorized_keys
+
+RUN touch /home/fuga/.ssh/authorized_keys && \
+    chmod 600 /home/fuga/.ssh/authorized_keys && \
+    cat /home/fuga/.ssh/id_rsa_openssh.pub > /home/fuga/.ssh/authorized_keys
